@@ -490,7 +490,7 @@ def describe(df, bins=10, correlation_overrides=None, pool_size=multiprocessing.
     return {'table': table_stats, 'variables': variable_stats.T, 'freq': {k: df[k].value_counts() for k in df.columns}}
 
 
-def to_html(sample, stats_object):
+def to_html(sample, stats_object, report_title):
     """Generate a HTML report from summary statistics and a given sample.
 
     Parameters
@@ -656,4 +656,4 @@ def to_html(sample, stats_object):
 
     sample_html = templates.template('sample').render(sample_table_html=sample.to_html(classes="sample"))
     # TODO: should be done in the template
-    return templates.template('base').render({'overview_html': overview_html, 'rows_html': rows_html, 'sample_html': sample_html})
+    return templates.template('base').render({'overview_html': overview_html, 'rows_html': rows_html, 'sample_html': sample_html, 'report_title': report_title})
